@@ -18,6 +18,7 @@ endif
 let g:colors_name='off'
 
 let s:black           = { "gui": "#212121", "cterm": "0"   }
+let s:darker_black    = { "gui": "#151515", "cterm": "0"   }
 let s:medium_gray     = { "gui": "#767676", "cterm": "243" }
 let s:white           = { "gui": "#F1F1F1", "cterm": "15"  }
 let s:actual_white    = { "gui": "#FFFFFF", "cterm": "231" }
@@ -29,11 +30,11 @@ let s:lighter_gray    = { "gui": "#C6C6C6", "cterm": "251" }
 let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
-let s:orange          = { "gui": "#D75F5F", "cterm": "167" }
-let s:darker_blue     = { "gui": "#005F87", "cterm": "18"  }
-let s:dark_blue       = { "gui": "#008EC4", "cterm": "4"   }
-let s:blue            = { "gui": "#20BBFC", "cterm": "12"  }
-let s:light_blue      = { "gui": "#b6d6fd", "cterm": "153" }
+let s:dark_orange     = { "gui": "#D75F00", "cterm": "166" }
+let s:light_orange    = { "gui": "#FF8700", "cterm": "208" }
+let s:darker_blue     = { "gui": "#000087", "cterm": "18"  }
+let s:dark_blue       = { "gui": "#5F5FFF", "cterm": "63"  }
+let s:light_blue      = { "gui": "#00AFFF", "cterm": "39"  }
 let s:dark_cyan       = { "gui": "#20A5BA", "cterm": "6"   }
 let s:light_cyan      = { "gui": "#4FB8CC", "cterm": "14"  }
 let s:dark_green      = { "gui": "#10A778", "cterm": "2"   }
@@ -44,7 +45,7 @@ let s:yellow          = { "gui": "#F3E430", "cterm": "11"  }
 let s:dark_yellow     = { "gui": "#A89C14", "cterm": "3"   }
 
 if &background == "dark"
-  let s:bg              = s:black
+  let s:bg              = s:darker_black
   let s:bg_subtle       = s:light_black
   let s:bg_very_subtle  = s:subtle_black
   let s:norm            = s:lighter_gray
@@ -53,9 +54,13 @@ if &background == "dark"
   let s:cyan            = s:light_cyan
   let s:green           = s:light_green
   let s:red             = s:light_red
-  let s:visual          = s:lighter_black
+  let s:purple          = s:light_purple
+  let s:orange          = s:light_orange
+  let s:visual          = s:dark_purple
+  let s:blue            = s:light_blue
 else
-  let s:bg              = s:actual_white
+  "let s:bg              = s:actual_white
+  let s:bg              = s:white
   let s:bg_subtle       = s:light_gray
   let s:bg_very_subtle  = s:lighter_gray
   let s:norm            = s:light_black
@@ -64,6 +69,9 @@ else
   let s:cyan            = s:dark_cyan
   let s:green           = s:dark_green
   let s:red             = s:dark_red
+  let s:purple          = s:dark_purple
+  let s:orange          = s:dark_orange
+  let s:blue            = s:dark_blue
   let s:visual          = s:light_blue
 endif
 
@@ -83,8 +91,8 @@ call s:h("Normal",        {"bg": s:bg, "fg": s:norm})
 call s:h("Cursor",        {"bg": s:blue, "fg": s:norm })
 call s:h("Comment",       {"fg": s:bg_subtle, "gui": "italic"})
 
-"call s:h("Constant",      {"fg": s:cyan})
-hi! link Constant         Normal
+call s:h("Constant",      {"fg": s:blue})
+"hi! link Constant         Normal
 hi! link Character        Constant
 hi! link Number           Constant
 hi! link Boolean          Constant
@@ -93,16 +101,21 @@ hi! link String           Constant
 
 "call s:h("Identifier",    {"fg": s:dark_blue})
 hi! link Identifier       Normal
-hi! link Function         Identifier
+"hi! link Function         Identifier
+call s:h("Function",        {"fg": s:green, "gui": "bold", "cterm": "bold"})
 
 "call s:h("Statement",     {"fg": s:green})
-hi! link Statement        Normal
+call s:h("Statement",        {"fg": s:orange, "gui": "bold", "cterm": "bold"})
+"hi! link Statement        Normal
 hi! link Conditonal       Statement
 hi! link Repeat           Statement
 hi! link Label            Statement
-hi! link Operator         Statement
+hi! link Operator         Normal
 hi! link Keyword          Statement
 hi! link Exception        Statement
+"Added by rakko
+hi! link StorageClass     Statement
+hi! link Structure        Statement
 
 "call s:h("PreProc",       {"fg": s:red})
 hi! link PreProc          Normal
@@ -111,10 +124,9 @@ hi! link Define           PreProc
 hi! link Macro            PreProc
 hi! link PreCondit        PreProc
 
-"call s:h("Type",          {"fg": s:purple})
 hi! link Type             Normal
-hi! link StorageClass     Type
-hi! link Structure        Type
+"hi! link StorageClass     Type
+"hi! link Structure        Type
 hi! link Typedef          Type
 
 "call s:h("Special",       {"fg": s:pink})
@@ -134,7 +146,8 @@ call s:h("NonText",       {"fg": s:medium_gray})
 call s:h("Directory",     {"fg": s:dark_blue})
 call s:h("ErrorMsg",      {"fg": s:pink})
 call s:h("IncSearch",     {"bg": s:yellow, "fg": s:light_black})
-call s:h("Search",        {"bg": s:bg_subtle, "fg": s:norm})
+"call s:h("Search",        {"bg": s:bg_subtle, "fg": s:norm})
+call s:h("Search",        {"bg": s:yellow, "fg": s:light_black})
 call s:h("MoreMsg",       {"fg": s:medium_gray, "cterm": "bold", "gui": "bold"})
 hi! link ModeMsg MoreMsg
 call s:h("LineNr",        {"fg": s:bg_subtle})
@@ -150,7 +163,7 @@ call s:h("WarningMsg",    {"fg": s:red})
 call s:h("WildMenu",      {"fg": s:bg, "bg": s:norm})
 call s:h("Folded",        {"fg": s:medium_gray})
 call s:h("FoldColumn",    {"fg": s:bg_subtle})
-call s:h("DiffAdd",       {"fg": s:green})
+call s:h("DiffAdd",       {"fg": s:light_green})
 call s:h("DiffDelete",    {"fg": s:red})
 call s:h("DiffChange",    {"fg": s:dark_yellow})
 call s:h("DiffText",      {"fg": s:dark_blue})
