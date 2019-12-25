@@ -31,7 +31,7 @@ let s:pink            = { "gui": "#fb007a", "cterm": "9"   }
 let s:dark_red        = { "gui": "#C30771", "cterm": "1"   }
 let s:light_red       = { "gui": "#E32791", "cterm": "1"   }
 let s:dark_orange     = { "gui": "#D75F00", "cterm": "166" }
-let s:light_orange    = { "gui": "#FF8700", "cterm": "208" }
+let s:light_orange    = { "gui": "#FFAA00", "cterm": "208" }
 let s:darker_blue     = { "gui": "#000087", "cterm": "18"  }
 let s:dark_blue       = { "gui": "#5F5FFF", "cterm": "63"  }
 let s:light_blue      = { "gui": "#00AFFF", "cterm": "39"  }
@@ -200,6 +200,10 @@ call s:h("htmlH3",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH4",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH5",        {"bg": s:bg, "fg": s:norm})
 call s:h("htmlH6",        {"bg": s:bg, "fg": s:norm})
+
+" Highlight groups pertaining to shell filetypes
+call s:h("shSnglCase",   {"bg": s:bg, "fg": s:norm})
+call s:h("shTestOpr",   {"bg": s:bg, "fg": s:norm})
 
 hi link diffRemoved       DiffDelete
 hi link diffAdded         DiffAdd
