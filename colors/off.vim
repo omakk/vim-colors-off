@@ -48,7 +48,7 @@ if &background == "dark"
   let s:bg              = s:darker_black
   let s:bg_subtle       = s:light_black
   let s:bg_very_subtle  = s:subtle_black
-  let s:norm            = s:lighter_gray
+  let s:norm            = s:actual_white
   let s:norm_subtle     = s:light_gray
   let s:purple          = s:light_purple
   let s:cyan            = s:light_cyan
