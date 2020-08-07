@@ -216,3 +216,8 @@ hi link GitGutterAdd                LineNr
 hi link GitGutterDelete             LineNr
 hi link GitGutterChange             LineNr
 hi link GitGutterChangeDelete       LineNr
+
+" NOTE(rakko): personal additions
+hi link cType       Statement
+hi link cppType     Statement
+hi link cppModifier Statement
